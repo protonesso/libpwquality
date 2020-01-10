@@ -9,9 +9,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include <stddef.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <assert.h>
 #include <ctype.h>
 #include <limits.h>
 #include <syslog.h>
@@ -20,6 +22,17 @@
 #include <pwd.h>
 #include <errno.h>
 #include "pwquality.h"
+
+int fgetpwent_r(FILE *stream, struct passwd *pwd, char *buf, size_t len,
+                struct passwd **result);
+
+int fgetpwent_r(FILE *stream, struct passwd *pwd, char *buf, size_t len,
+                struct passwd **result)
+{
+	assert(stream != NULL);
+
+	return fgetpwent_r(stream, pwd, buf, len, result);
+}
 
 /*
  * here, we make a definition for the externally accessible function
