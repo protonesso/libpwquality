@@ -112,7 +112,7 @@ check_local_user (pam_handle_t *pamh,
         }
 
         for (;;) {
-                errn = fgetpwent_r(fp, &pw, buf, sizeof (buf), &pwp);
+                errn = fgetpwent(fp, &pw, buf, sizeof (buf), &pwp);
                 if (errn == ERANGE) {
                         pam_syslog(pamh, LOG_WARNING, "%s contains very long lines; corrupted?",
                                    PATH_PASSWD);
